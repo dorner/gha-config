@@ -148,7 +148,5 @@ _options_:
   use_submodules: true
 ```
 
-* `use_submodules`: If this is set it will check out code recursively with submodules. This requires two things:
-    * A secret called `FLIPPCIRCLECIPULLER_REPO_TOKEN` - Eng Cap will need to add this
-    * Your repo needs to have a Git version > 2.18
+* `use_submodules`: If this is set it will check out code recursively with submodules. Your repo needs to have a Git version > 2.18
 
