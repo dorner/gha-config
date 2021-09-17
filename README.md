@@ -35,7 +35,7 @@ on:
 
 _defaults_:
   _container_:
-    image: ghcr.io/wishabi/ci-build-environment:ruby-3.0-buster-node
+    image: dockerhub-username:docker-image-tag:ruby-3.0
     credentials:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_TOKEN }}
