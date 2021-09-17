@@ -1,0 +1,18 @@
+#! /usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'yaml'
+require 'fileutils'
+
+require_relative '../lib/gha_config/parser'
+require_relative '../lib/gha_config/writer'
+require_relative '../lib/gha_config/config'
+
+file = ARGV[1] || '.github/workflow-src/CI.yml'
+unless File.exist?(file)
+  puts "File #{file} does not exist!"
+  exit(1)
+end
+results = GhaConfig::Parser.parse(file)
+GhaConfig::Writer.write(results, '.github/workflows/CI.yml')
+puts "Wrote results to .github/workflows/CI.yml"
