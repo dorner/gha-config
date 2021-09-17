@@ -82,16 +82,6 @@ env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  DEPLOYMENT_TYPE: ${{ secrets.DEPLOYMENT_TYPE }}
-  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-  ECS_CLUSTER_PROD: ${{ secrets.ECS_CLUSTER_PROD }}
-  ECS_CLUSTER_STG: ${{ secrets.ECS_CLUSTER_STG }}
-  ECS_SERVICE_PROD: ${{ secrets.ECS_SERVICE_PROD }}
-  ECS_SERVICE_STG: ${{ secrets.ECS_SERVICE_STG }}
-  SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
-  SERVICE_PROFILE: ${{ secrets.SERVICE_PROFILE }}
-  SERVICE_TOKEN: ${{ secrets.SERVICE_TOKEN }}
-  WISHABI_ENVIRONMENT: ${{ secrets.WISHABI_ENVIRONMENT }}
 
 jobs:
 
@@ -106,13 +96,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Flipp global
-      uses: wishabi/github-actions@v0.3
-      env:
-        SLACK_BOT_TOKEN: "${{ secrets.SLACK_BOT_TOKEN }}"
-      timeout-minutes: 10
-      with:
-        slack_channel: "${{env.SLACK_CHANNEL }}"
-        job_status: "${{ job.status }}"
+      uses: wishabi/my-cool-action
     - name: Bundle cache
       uses: actions/cache@v2
       with:
@@ -162,14 +146,9 @@ In addition to `_defaults_`, there are other options that will affect how the ou
 ```yaml
 _options_:
   use_submodules: true
-  enable_ssh: true
 ```
 
 * `use_submodules`: If this is set it will check out code recursively with submodules. This requires two things:
     * A secret called `FLIPPCIRCLECIPULLER_REPO_TOKEN` - Eng Cap will need to add this
     * Your repo needs to have a Git version > 2.18
-* `enable_ssh`: If set to true, the Flipp global action will have SSH enabled on failures. This should generally only be set to true while debugging things.
 
-## Contributing
-
-Pull requests are welcome!
