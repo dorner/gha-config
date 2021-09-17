@@ -88,7 +88,7 @@ jobs:
   build:
     runs-on: [ubuntu, runner-fleet]
     container:
-      image: ghcr.io/wishabi/ci-build-environment:ruby-3.0-buster-node
+      image: dockerhub-username:docker-image-tag:ruby-3.0
       credentials:
         username: "${{ github.repository_owner }}"
         password: "${{ secrets.GHCR_TOKEN }}"
